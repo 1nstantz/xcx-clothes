@@ -1,0 +1,50 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"enablePullDownRefresh" : true
+			}
+		},
+		{
+			"path" : "pages/category/category",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/settings/settings",
+			"style" : 
+			{
+				"enablePullDownRefresh" : false
+			}
+		}
+	],
+	"globalStyle": {
+		// "navigationBarTextStyle": "white",
+		// "navigationBarTitleText": "spring's clothes",
+		// "navigationBarBackgroundColor": "#0199FE",
+		// "backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/images/clothes.png",
+				"selectedIconPath": "static/images/clothes_fill.png"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "static/images/category.png",
+				"selectedIconPath": "static/images/category_fill.png"
+			},
+			{
+				"pagePath": "pages/settings/settings",
+				"iconPath": "static/images/settings.png",
+				"selectedIconPath": "static/images/setting_fill.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
