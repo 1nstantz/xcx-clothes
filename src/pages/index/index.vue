@@ -1,21 +1,34 @@
 <template>
 	<view class="home">
-		<u-search placeholder="关键字" v-model="keyword" :showAction="false" @custom='searchClick'
-			@search='searchClick'></u-search>
-
+		<!-- 搜索条件 -->
+		<el-select v-model="season"  placeholder="选择季节" style="width:20% ">
+			<el-option
+			v-for="item in seasons"
+			:key="item.value"
+			:label="item.label"
+			:value="item.value">
+			</el-option>
+		</el-select>
+		<!-- 搜索类别 -->
+		<el-autocomplete
+			class="inline-input"
+			v-model="categoryId" 
+			:fetch-suggestions="querySearch"
+			placeholder="输入分类"
+			@select="handleSelect"  style="width:30% "
+		></el-autocomplete>
+		<el-button type="primary" icon="el-icon-search">搜索</el-button>
+		<!-- 图片 -->
 		<view class="ComBox">
 			<div class="ComList" v-for="item in clothesList" :key="item.id">
 				<div class="ImgBOX">
-					<img :src="item.url" class="Img" alt="">
+					<img :src="item" class="Img" alt="">
 				</div>
 				<div class="Title">
 					{{item.label}}
 				</div>
 			</div>
 		</view>
-
-		<uni-fab ref="fab" :horizontal="horizontal" :vertical="vertical"
-			 @fabClick="insert" />
 	</view>
 
 </template>
@@ -28,22 +41,50 @@
 				clothesList: [
 					"static/images/category.png",
 					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
+					"static/images/category.png",
 					"static/images/category.png"
 				],
 				vertical: 'bottom',
 				horizontal: 'right',
+				seasons: [{label: "春秋",value: 1},{label: "夏",value: 2},{label: "冬",value: 3}],
+				season: '',
+				categorys: [],
+				categoryId:''
 			}
 		},
 		onLoad() {
-
+			
 		},
 		methods: {
+			querySearch(queryString, cb) {
+				var results  = this.categorys;
+				this.results = queryString ? results.filter(this.createFilter(queryString)) : results;
+				//调用 callback 返回建议列表的数据
+				cb(results);
+			},
 			searchClick() {
 
 			},
-			insert(){
-				alert("点击添加")
+			createFilter(queryString) {
+				return (item) => {
+					return item.categoryName.toUpperCase().match(queryString.toUpperCase());
+				};
+			},
+			loadCategorys() {
+				return [{categoryName: "T恤",categoryId: 1},{categoryName: "外套",categoryId: 2},{categoryName: "连衣裙",categoryId: 3},{categoryName: "鞋子",categoryId: 4}]
+			},
+			handleSelect(item) {
+				console.log(item);
 			}
+		},
+		mounted() {
+			this.categorys = this.loadCategorys();
 		}
 	}
 </script>

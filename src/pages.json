@@ -22,10 +22,10 @@
 		}
 	],
 	"globalStyle": {
-		// "navigationBarTextStyle": "white",
-		// "navigationBarTitleText": "spring's clothes",
-		// "navigationBarBackgroundColor": "#0199FE",
-		// "backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "spring's clothes",
+		"navigationBarBackgroundColor": "#0199FE",
+		"backgroundColor": "#F8F8F8"
 	},
 	"tabBar": {
 		"list": [
